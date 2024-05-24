@@ -1,5 +1,6 @@
 import { Replace } from 'src/helpers/replace';
 import { HealthProblem } from './health-problem';
+import { InvalidGenderException } from '@infra/exceptions/invalid-gender';
 
 export interface ClientProperties {
   id?: string;
@@ -91,6 +92,10 @@ export class Client {
   }
 
   public setGender(gender: string): void {
+    const validGenders = ['M', 'F'];
+    if (!validGenders.includes(gender)) {
+      throw new InvalidGenderException();
+    }
     this.properties.gender = gender;
   }
 

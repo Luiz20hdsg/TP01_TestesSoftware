@@ -56,6 +56,19 @@ describe('Test for ListClients use case', () => {
     );
   });
 
-
+  
+  it('should return clients sorted by creation date in descending order', async () => {
+    const client1 = makeClient();
+    const client2 = makeClient();
+  
+    await Promise.all([
+      clientRepository.save(client1),
+      clientRepository.save(client2),
+    ]);
+  
+    const clients = await listClients.execute();
+  
+    expect(clients[0].getCreatedAt().getTime()).toBeGreaterThanOrEqual(clients[1].getCreatedAt().getTime());
+  });
 
 });

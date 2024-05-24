@@ -2,6 +2,7 @@ import { InMemoryClientRepository } from '@test/repositories/in-memory-client-re
 import { Client } from '../entities/client';
 import { UpdateClient } from './update-client';
 import { makeClient } from '@test/factories/client-factory';
+import { ClientNotFoundException } from '@infra/exceptions/client-not-found';
 
 describe('Test for UpdateClient use case', () => {
   let clientTest;
@@ -126,6 +127,17 @@ describe('Test for UpdateClient use case', () => {
     expect(newClient.getGender()).toEqual(clientCopy.getGender());
     expect(newClient.getCreatedAt()).toEqual(clientCopy.getCreatedAt());
   });
+
+
+  it('should throw an error when updating a non-existent client', async () => {
+    const nonExistentClientId = 'non_existent_client_id';
+    const clientUpdates = {
+      name: 'Updated Name',
+    };
   
+    await expect(updateClient.execute(nonExistentClientId, clientUpdates)).rejects.toThrow(ClientNotFoundException);
+  });
+  
+
 
 });

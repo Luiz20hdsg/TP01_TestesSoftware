@@ -30,4 +30,17 @@ describe('Test for CreateClient use case', () => {
     await expect(createClient.execute(newClient)).rejects.toThrowError('Database error');
   });
 
+  // it('should create a client with default values', async () => {
+  //   const newClient = makeClient();
+
+  //   await createClient.execute(newClient);
+  
+  //   const clientFound = await clientRepository.findAll();
+  
+  //   expect(clientFound[0].getName()).toEqual('John Nhoj');
+  //   expect(clientFound[0].getBirthDate()).toEqual(new Date('1990-01-01'));
+  //   expect(clientFound[0].getGender()).toEqual('M');
+  //   expect(clientFound[0].getHealthProblems()).toEqual([]);
+  // });
+
 });

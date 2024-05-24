@@ -28,4 +28,6 @@ describe('Test for GetTopHealthRiskClients use case', () => {
 
     expect(topRiskClients).toEqual([client3, client2]);
   });
+
+
 });

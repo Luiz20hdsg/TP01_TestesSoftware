@@ -81,4 +81,11 @@ describe('Test for DeleteClient use case', () => {
       expect(await clientRepository.findById(client.getId())).toEqual(client);
     }
   });
+
+  it('should throw an error when deleting a client with an invalid ID format', async () => {
+    const invalidClientId = 'invalid_client_id';
+  
+    await expect(deleteClient.execute(invalidClientId)).rejects.toThrow(ClientNotFoundException);
+  });
+  
 });
