@@ -17,10 +17,14 @@ export class InMemoryClientRepository implements ClientRepository {
 
     if (!client) throw new ClientNotFoundException();
 
-    return client;
+    return client || null;
   }
 
   async save(client: Client) {
+    const existingClient = this.clients.find((item) => item.getId() === client.getId());
+    if (existingClient) {
+      throw new Error('Duplicate ID');
+    }
     this.clients.push(client);
   }
 

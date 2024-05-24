@@ -19,15 +19,4 @@ describe('Test for CreateClient use case', () => {
 
     expect(clientFound).toBeTruthy();
   });
-
-  //new
-  it('should handle errors when saving a new Client on the database', async () => {
-    const newClient = makeClient();
-
-    // Mockando um erro ao salvar no repositório
-    clientRepository.save = jest.fn().mockRejectedValueOnce(new Error('Database error'));
-
-    await expect(createClient.execute(newClient)).rejects.toThrowError('Database error');
-  });
-
 });

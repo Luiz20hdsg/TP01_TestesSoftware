@@ -37,4 +37,12 @@ describe('Test for GetClient use case', () => {
       ClientNotFoundException,
     );
   });
+
+  it('should return null for non-existent ID in non-empty repository', async () => {
+    const client = await getClient.execute('non_existent_id');
+
+    expect(client).toBeNull();
+  });
+
+
 });
