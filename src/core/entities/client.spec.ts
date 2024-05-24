@@ -29,4 +29,55 @@ describe('Test for Client entity', () => {
     client.setHealthProblems([]);
     expect(client.getScore()).toBeCloseTo(5.73);
   });
+
+  it('should update the client name', () => {
+    const newName = 'Luiz';
+    client.setName(newName);
+    expect(client.getName()).toEqual(newName);
+  });
+
+  it('should update the client birthDate', () => {
+    const newBirthDate = new Date('1999-11-06');
+    client.setBirthDate(newBirthDate);
+    expect(client.getBirthDate()).toEqual(newBirthDate);
+  });
+
+  it('should update the client gender', () => {
+    const newGender = 'F';
+    client.setGender(newGender);
+    expect(client.getGender()).toEqual(newGender);
+  });
+
+  it('should update the client healthProblems', () => {
+    const newHealthProblems = [{ name: 'migraine', degree: 3 }];
+    client.setHealthProblems(newHealthProblems);
+    expect(client.getHealthProblems()).toEqual(newHealthProblems);
+  });
+
+  it('should update the client createdAt', () => {
+    const newCreatedAt = new Date('2022-02-20');
+    client.setCreatedAt(newCreatedAt);
+    expect(client.getCreatedAt()).toEqual(newCreatedAt);
+  });
+
+  it('should update the client updatedAt', () => {
+    const newUpdatedAt = new Date('2023-07-19');
+    client.setUpdatedAt(newUpdatedAt);
+    expect(client.getUpdatedAt()).toEqual(newUpdatedAt);
+  });
+
+  it('should update properties from another client', () => {
+    const newClient = new Client({
+      name: 'Jon',
+      birthDate: new Date('2022-08-10'),
+      gender: 'M',
+      healthProblems: [{ name: 'hypertension', degree: 4 }],
+    });
+    client.updatePropertiesFrom(newClient);
+    expect(client.getName()).toEqual(newClient.getName());
+    expect(client.getBirthDate()).toEqual(newClient.getBirthDate());
+    expect(client.getGender()).toEqual(newClient.getGender());
+    expect(client.getHealthProblems()).toEqual(newClient.getHealthProblems());
+  });
+
 });
