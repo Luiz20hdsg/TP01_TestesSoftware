@@ -6,4 +6,6 @@ export abstract class ClientRepository {
   abstract save(client: Client): Promise<void>;
   abstract update(id: string, clientUpdates: Client): Promise<void>;
   abstract delete(id: string): Promise<void>;
+  abstract findByName(name: string): Promise<Client | null>; 
+
 }

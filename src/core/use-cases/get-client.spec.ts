@@ -2,9 +2,11 @@ import { InMemoryClientRepository } from '@test/repositories/in-memory-client-re
 import { GetClient } from './get-client';
 import { ClientNotFoundException } from '@infra/exceptions/client-not-found';
 import { makeClient } from '@test/factories/client-factory';
+import { makeClient02 } from '@test/factories/client-factory';
+
 
 describe('Test for GetClient use case', () => {
-  let client1, client2;
+  let client1, client2, client3;
   let clientRepository;
   let getClient;
   beforeAll(async () => {
@@ -13,6 +15,7 @@ describe('Test for GetClient use case', () => {
 
     client1 = makeClient();
     client2 = makeClient({ name: 'Taylor' });
+    client3 = makeClient02();
 
     await Promise.all([
       clientRepository.save(client1),
@@ -50,4 +53,10 @@ describe('Test for GetClient use case', () => {
     await expect(getClient.execute(invalidId)).rejects.toThrow(ClientNotFoundException);
   });
 
+  /*it('should return the correct client by name', async () => {
+    const client = await getClient.execute(null, 'Alice'); // Buscar pelo nome 'Alice'
+
+    expect(client).toEqual(client3); // Verificar se o cliente retornado é o mesmo criado com makeClient02
+  });*/
+  
 });

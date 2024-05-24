@@ -20,6 +20,11 @@ export class InMemoryClientRepository implements ClientRepository {
     return client;
   }
 
+  async findByName(name: string): Promise<Client | null> {
+    const client = this.clients.find((item) => item.getName() === name);
+    return client ?? null;
+  }
+
   async save(client: Client) {
     this.clients.push(client);
   }
@@ -44,5 +49,9 @@ export class InMemoryClientRepository implements ClientRepository {
 
   private findClientIndex(clientId: string) {
     return this.clients.findIndex((item) => clientId === item.getId());
+  }
+
+  clear(): void {
+    this.clients = [];
   }
 }

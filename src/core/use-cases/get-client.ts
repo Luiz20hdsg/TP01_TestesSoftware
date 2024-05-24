@@ -11,4 +11,15 @@ export class GetClient {
 
     return client;
   }
+
+  /*async execute(id: string | null, name: string | null): Promise<Client | null> {
+    if (id) {
+      const client = await this.clientRepository.findById(id);
+      return client;
+    } else if (name) {
+      const client = await this.clientRepository.findByName(name);
+      return client;
+    }
+    return null;
+  }*/
 }
