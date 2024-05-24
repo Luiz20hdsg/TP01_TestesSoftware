@@ -11,6 +11,12 @@ describe('Test for ListClients use case', () => {
     listClients = new ListClients(clientRepository);
   });
 
+  it('should return an empty array when there are no clients in the repository', async () => {
+    const clients = await listClients.execute();
+
+    expect(clients).toEqual([]);
+  });
+  
   it('should return all clients', async () => {
     const client1 = makeClient();
     const client2 = makeClient();
@@ -29,4 +35,27 @@ describe('Test for ListClients use case', () => {
       ]),
     );
   });
+
+  it('should return clients in the order they were added to the repository', async () => {
+    const client1 = makeClient();
+    const client2 = makeClient();
+  
+    await Promise.all([
+      clientRepository.save(client1),
+      clientRepository.save(client2),
+    ]);
+  
+    const clients = await listClients.execute();
+  
+    // Verifica se ambos os clientes estão incluídos na lista
+    expect(clients).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining(client1),
+        expect.objectContaining(client2),
+      ]),
+    );
+  });
+
+
+
 });
