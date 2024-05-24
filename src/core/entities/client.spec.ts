@@ -1,4 +1,5 @@
 import { Client } from './client';
+import { InvalidGenderException } from '@infra/exceptions/invalid-gender';
 
 describe('Test for Client entity', () => {
   let client;
@@ -78,6 +79,12 @@ describe('Test for Client entity', () => {
     expect(client.getBirthDate()).toEqual(newClient.getBirthDate());
     expect(client.getGender()).toEqual(newClient.getGender());
     expect(client.getHealthProblems()).toEqual(newClient.getHealthProblems());
+  });
+
+  it('should throw an error when setting an invalid gender', () => {
+    expect(() => {
+      client.setGender('Invalid');
+    }).toThrowError('Exception! Gender not found');
   });
 
 });
