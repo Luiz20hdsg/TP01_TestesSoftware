@@ -1,6 +1,6 @@
 # Trabalho Prático 1 de Teste de Software
 
-Este repositório contém o código fonte e os testes de unidade para o Trabalho Prático 1 de Teste de Software, que faz parte da disciplina de Teste de Software da UFMG.
+Este repositório contém o código fonte e os testes de unidade para o Trabalho Prático 1 da disciplina de Teste de Software da UFMG.
 
 ## Integrantes:
 
