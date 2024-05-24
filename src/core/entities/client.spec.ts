@@ -87,4 +87,39 @@ describe('Test for Client entity', () => {
     }).toThrowError('Exception! Gender not found');
   });
 
+  it('should throw an error when setting an undefined gender', () => {
+    // Testa se uma exceção é lançada ao definir um gênero como undefined
+    expect(() => {
+      client.setGender(undefined);
+    }).toThrowError(InvalidGenderException);
+  });
+
+  it('should ensure createdAt and updatedAt are valid dates', () => {
+    expect(client.getCreatedAt()).toBeInstanceOf(Date);
+    expect(client.getUpdatedAt()).toBeInstanceOf(Date);
+  });
+  /*
+  it('should ensure equality between clients', () => {
+    const clonedClient = new Client({
+      id: 'a8Ahy1j',
+      name: 'Davi',
+      birthDate: new Date('2023-1-5'),
+      gender: 'M',
+      healthProblems: [
+        { name: 'diabetes', degree: 2 },
+        { name: 'asthma', degree: 5 },
+      ],
+      createdAt: new Date('2021-3-4'),
+      updatedAt: new Date('2021-3-4'),
+    });
+  
+    expect(client.getId()).toEqual(clonedClient.getId());
+    expect(client.getName()).toEqual(clonedClient.getName());
+    expect(client.getBirthDate()).toEqual(clonedClient.getBirthDate());
+    expect(client.getGender()).toEqual(clonedClient.getGender());
+    expect(client.getHealthProblems()).toEqual(clonedClient.getHealthProblems());
+    expect(client.getCreatedAt()).toEqual(clonedClient.getCreatedAt());
+    expect(client.getUpdatedAt()).toEqual(clonedClient.getUpdatedAt());
+  });*/
+
 });
