@@ -3,6 +3,7 @@ import { Client } from '../entities/client';
 import { UpdateClient } from './update-client';
 import { makeClient } from '@test/factories/client-factory';
 import { ClientNotFoundException } from '@infra/exceptions/client-not-found';
+import { InvalidInputException } from '../exceptions/invalid-input.exception'; 
 
 describe('Test for UpdateClient use case', () => {
   let clientTest;
@@ -137,7 +138,25 @@ describe('Test for UpdateClient use case', () => {
   
     await expect(updateClient.execute(nonExistentClientId, clientUpdates)).rejects.toThrow(ClientNotFoundException);
   });
-  
 
+  /*
+  it('should throw an error when updating a client with invalid birthDate', async () => {
+    const clientUpdates = {
+      birthDate: 'invalid_date',
+    };
+
+    await expect(updateClient.execute(clientTestId, clientUpdates)).rejects.toThrow(InvalidInputException);
+  });*/
+
+  it('should not throw an error when updating a client without changes', async () => {
+    // Testa a atualização de um cliente sem mudanças
+    const clientUpdates = {};
+
+    const newClient = await clientRepository.findById(clientTestId);
+    await expect(updateClient.execute(clientTestId, clientUpdates)).resolves.not.toThrow();
+    
+    const updatedClient = await clientRepository.findById(clientTestId);
+    expect(updatedClient).toEqual(newClient);
+  });
 
 });
