@@ -87,5 +87,9 @@ describe('Test for DeleteClient use case', () => {
   
     await expect(deleteClient.execute(invalidClientId)).rejects.toThrow(ClientNotFoundException);
   });
+
+  it('should throw an error when trying to delete a client with a null ID', async () => {
+    await expect(deleteClient.execute(null)).rejects.toThrow(ClientNotFoundException);
+  });
   
 });
