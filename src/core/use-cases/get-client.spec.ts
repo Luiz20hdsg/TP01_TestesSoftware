@@ -38,4 +38,16 @@ describe('Test for GetClient use case', () => {
     );
   });
 
+  it('should throw ClientNotFoundException when id is an empty string', async () => {
+    const emptyId = '';
+    
+    await expect(getClient.execute(emptyId)).rejects.toThrow(ClientNotFoundException);
+  });
+  
+  it('should throw ClientNotFoundException for invalid id format', async () => {
+    const invalidId = 'some_invalid_id';
+    
+    await expect(getClient.execute(invalidId)).rejects.toThrow(ClientNotFoundException);
+  });
+
 });
