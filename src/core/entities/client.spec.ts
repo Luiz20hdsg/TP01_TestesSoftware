@@ -81,7 +81,7 @@ describe('Test for Client entity', () => {
   it('should throw an error when setting an invalid gender', () => {
     expect(() => {
       client.setGender('Invalid');
-    }).toThrowError('Exception! Gender not found');
+    }).toThrowError(InvalidGenderException);
   });
 
   it('should throw an error when setting an undefined gender', () => {
