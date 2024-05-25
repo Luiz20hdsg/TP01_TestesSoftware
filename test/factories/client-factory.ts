@@ -4,18 +4,19 @@ import ObjectID from 'bson-objectid';
 type Override = Partial<ClientProperties>;
 
 export function makeClient(override: Override = {}): Client {
-  const id = ObjectID().toHexString();
-  const defaultProperties: ClientProperties = {
-    id,
-    name: 'John Nhoj',
+  return new Client({
+    id: ObjectID().toHexString(),
+    name: 'Davi',
+    birthDate: new Date('2023-1-5'),
     gender: 'M',
-    birthDate: new Date('1990-10-11'),
-    healthProblems: [],
-    createdAt: new Date('2000-01-02'),
-    updatedAt: new Date('2000-01-02'),
-  };
-
-  return new Client({ ...defaultProperties, ...override });
+    healthProblems: [
+        { name: 'diabetes', degree: 2 },
+        { name: 'asthma', degree: 5 },
+    ],
+    createdAt: new Date('2021-3-4'),
+    updatedAt: new Date('2021-3-4'),
+    ...override
+  });
 }
 
 export function makeClient02(override: Override = {}): Client {

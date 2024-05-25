@@ -1,21 +1,11 @@
+import { makeClient } from '@test/factories/client-factory';
 import { Client } from './client';
 import { InvalidGenderException } from '@infra/exceptions/invalid-gender';
 
 describe('Test for Client entity', () => {
   let client;
   beforeEach(() => {
-    client = new Client({
-      id: 'a8Ahy1j',
-      name: 'Davi',
-      birthDate: new Date('2023-1-5'),
-      gender: 'M',
-      healthProblems: [
-        { name: 'diabetes', degree: 2 },
-        { name: 'asthma', degree: 5 },
-      ],
-      createdAt: new Date('2021-3-4'),
-      updatedAt: new Date('2021-3-4'),
-    });
+    client = makeClient();
   });
 
   it('should be able to create a client', () => {
