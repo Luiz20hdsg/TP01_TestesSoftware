@@ -1,6 +1,7 @@
 import { Replace } from 'src/helpers/replace';
 import { HealthProblem } from './health-problem';
 import { InvalidGenderException } from '@infra/exceptions/invalid-gender';
+import { InvalidHealthProblemDegree } from '@core/exceptions/invalid-health-problem-degree.exception';
 
 export interface ClientProperties {
   id?: string;
@@ -22,12 +23,23 @@ export class Client {
       { createdAt?: Date; updatedAt?: Date }
     >,
   ) {
+    this.checkHealthProblems(properties.healthProblems);
+
     this.properties = {
       ...properties,
       createdAt: properties.createdAt ?? new Date(),
       updatedAt: properties.updatedAt ?? new Date(),
     };
     this.updateScore();
+  }
+
+  private checkHealthProblems(healthProblems: HealthProblem[]) {
+    if (!healthProblems) return;
+
+    for (const healthProblem of healthProblems) {
+      if (healthProblem.degree < 1 || healthProblem.degree > 10) 
+        throw new InvalidHealthProblemDegree();
+    }
   }
 
   private updateScore() {
@@ -104,6 +116,7 @@ export class Client {
   }
 
   public setHealthProblems(healthProblems: HealthProblem[]): void {
+    this.checkHealthProblems(healthProblems);
     this.properties.healthProblems = healthProblems;
     this.updateScore();
   }

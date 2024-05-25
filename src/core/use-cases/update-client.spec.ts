@@ -11,7 +11,7 @@ describe('Test for UpdateClient use case', () => {
   let clientRepository;
   let updateClient;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     clientRepository = new InMemoryClientRepository();
     updateClient = new UpdateClient(clientRepository);
 
@@ -24,7 +24,7 @@ describe('Test for UpdateClient use case', () => {
     jest.spyOn(global, 'Date').mockImplementation(() => mockDate as any);
   });
 
-  afterAll(() => {
+  afterEach(() => {
     (global.Date as any).mockRestore();
   });
 
@@ -62,11 +62,7 @@ describe('Test for UpdateClient use case', () => {
 
     const newClient = await clientRepository.findById(clientTestId);
 
-    expect(newClient.getName()).toEqual(clientUpdates.name);
-    expect(newClient.getBirthDate()).toEqual(clientCopy.getBirthDate());
-    expect(newClient.getGender()).toEqual(clientCopy.getGender());
-    expect(newClient.getHealthProblems()).toEqual(clientCopy.getHealthProblems());
-    expect(newClient.getCreatedAt()).toEqual(clientCopy.getCreatedAt());
+    expect(newClient).toMatchObject(clientCopy);
   });
 
   it('should update only the client birthDate', async () => {
@@ -81,11 +77,7 @@ describe('Test for UpdateClient use case', () => {
   
     const newClient = await clientRepository.findById(clientTestId);
   
-    expect(newClient.getBirthDate()).toEqual(clientCopy.getBirthDate());
-    expect(newClient.getName()).toEqual(clientCopy.getName());
-    expect(newClient.getGender()).toEqual(clientCopy.getGender());
-    expect(newClient.getHealthProblems()).toEqual(clientCopy.getHealthProblems());
-    expect(newClient.getCreatedAt()).toEqual(clientCopy.getCreatedAt());
+    expect(newClient).toMatchObject(clientCopy);
   });
   
   it('should update only the client gender', async () => {
@@ -100,11 +92,7 @@ describe('Test for UpdateClient use case', () => {
   
     const newClient = await clientRepository.findById(clientTestId);
   
-    expect(newClient.getGender()).toEqual(clientCopy.getGender());
-    expect(newClient.getName()).toEqual(clientCopy.getName());
-    expect(newClient.getBirthDate()).toEqual(clientCopy.getBirthDate());
-    expect(newClient.getHealthProblems()).toEqual(clientCopy.getHealthProblems());
-    expect(newClient.getCreatedAt()).toEqual(clientCopy.getCreatedAt());
+    expect(newClient).toMatchObject(clientCopy);
   });
   
   it('should update only the client healthProblems', async () => {
@@ -122,11 +110,7 @@ describe('Test for UpdateClient use case', () => {
   
     const newClient = await clientRepository.findById(clientTestId);
   
-    expect(newClient.getHealthProblems()).toEqual(clientCopy.getHealthProblems());
-    expect(newClient.getName()).toEqual(clientCopy.getName());
-    expect(newClient.getBirthDate()).toEqual(clientCopy.getBirthDate());
-    expect(newClient.getGender()).toEqual(clientCopy.getGender());
-    expect(newClient.getCreatedAt()).toEqual(clientCopy.getCreatedAt());
+    expect(newClient).toMatchObject(clientCopy);
   });
 
 
@@ -139,24 +123,14 @@ describe('Test for UpdateClient use case', () => {
     await expect(updateClient.execute(nonExistentClientId, clientUpdates)).rejects.toThrow(ClientNotFoundException);
   });
 
-  /*
-  it('should throw an error when updating a client with invalid birthDate', async () => {
-    const clientUpdates = {
-      birthDate: 'invalid_date',
-    };
-
-    await expect(updateClient.execute(clientTestId, clientUpdates)).rejects.toThrow(InvalidInputException);
-  });*/
-
   it('should not throw an error when updating a client without changes', async () => {
-    // Testa a atualização de um cliente sem mudanças
     const clientUpdates = {};
 
     const newClient = await clientRepository.findById(clientTestId);
     await expect(updateClient.execute(clientTestId, clientUpdates)).resolves.not.toThrow();
     
     const updatedClient = await clientRepository.findById(clientTestId);
-    expect(updatedClient).toEqual(newClient);
+    expect(updatedClient).toMatchObject(newClient);
   });
 
 });

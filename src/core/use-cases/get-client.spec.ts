@@ -9,7 +9,7 @@ describe('Test for GetClient use case', () => {
   let client1, client2, client3;
   let clientRepository;
   let getClient;
-  beforeAll(async () => {
+  beforeEach(async () => {
     clientRepository = new InMemoryClientRepository();
     getClient = new GetClient(clientRepository);
 
