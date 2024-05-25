@@ -7,7 +7,7 @@ import { makeClient02 } from '@test/factories/client-factory';
 describe('Test for CreateClient use case', () => {
   let clientRepository;
   let createClient;
-  beforeAll(async () => {
+  beforeEach(async () => {
     clientRepository = new InMemoryClientRepository();
     createClient = new CreateClient(clientRepository);
   });

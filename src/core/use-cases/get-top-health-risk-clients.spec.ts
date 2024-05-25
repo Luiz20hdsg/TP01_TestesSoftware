@@ -8,7 +8,7 @@ describe('Test for GetTopHealthRiskClients use case', () => {
   let clientRepository;
   let client1, client2, client3;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     clientRepository = new InMemoryClientRepository();
     getTopHealthRiskClients = new GetTopHealthRiskClients(clientRepository);
     getTopHealthRiskClients.setNumberOfClients(2);

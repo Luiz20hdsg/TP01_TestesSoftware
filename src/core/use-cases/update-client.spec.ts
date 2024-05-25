@@ -11,7 +11,7 @@ describe('Test for UpdateClient use case', () => {
   let clientRepository;
   let updateClient;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     clientRepository = new InMemoryClientRepository();
     updateClient = new UpdateClient(clientRepository);
 
@@ -24,7 +24,7 @@ describe('Test for UpdateClient use case', () => {
     jest.spyOn(global, 'Date').mockImplementation(() => mockDate as any);
   });
 
-  afterAll(() => {
+  afterEach(() => {
     (global.Date as any).mockRestore();
   });
 
