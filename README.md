@@ -6,7 +6,7 @@ Este repositório contém o código fonte e os testes de unidade para o Trabalho
 
 * Luiz Henrique da Silva Goncalves
 * Felipe Zan Coelho
-* Davi Brito
+* Davi Esondem Menezes Brito
 
 ## Descrição do Trabalho Prático
 
@@ -14,7 +14,7 @@ O objetivo deste trabalho prático é desenvolver e testar um pequeno sistema de
 
 ## Descrição do Sistema:
 
-Este repositório implementa uma API REST com as funcionalidades de backend descritas abaixo. Este projeto foi desenvolvido como um estudo de APIs e backend, arquitetura limpa e uso de testes automatizados.
+Este repositório implementa uma API REST no contexto de uma empresa de seguro de saúde. Um cliente da empresa pode ser cadastrado, alterado, buscado e removido, além de possuir todos os seus problemas de saúde e seu score de risco listados.
 
 ### Tecnologias utilizadas:
 
@@ -51,7 +51,7 @@ Este repositório implementa uma API REST com as funcionalidades de backend desc
 Ao recuperar os 10 clientes com maior risco de saúde, é utilizado o seguinte cálculo:
 
 * sd = soma dos níveis de severidade dos problemas
-* score = (1 / (1 + e^(-(-2.8 + sd)))))) \* 100
+* score = (1 / (1 + e^(-(-2.8 + sd)))) \* 100
 
 ### Testes:
 
