@@ -8,7 +8,7 @@ describe('Test for ListClients use case', () => {
   let clientRepository;
   let listClients;
 
-  beforeAll(() => {
+  beforeEach(() => {
     clientRepository = new InMemoryClientRepository();
     listClients = new ListClients(clientRepository);
   });

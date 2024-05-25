@@ -3,7 +3,7 @@ import { InvalidGenderException } from '@infra/exceptions/invalid-gender';
 
 describe('Test for Client entity', () => {
   let client;
-  beforeAll(() => {
+  beforeEach(() => {
     client = new Client({
       id: 'a8Ahy1j',
       name: 'Davi',
