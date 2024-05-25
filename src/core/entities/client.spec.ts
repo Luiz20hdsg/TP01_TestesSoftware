@@ -1,6 +1,7 @@
 import { makeClient } from '@test/factories/client-factory';
 import { Client } from './client';
 import { InvalidGenderException } from '@infra/exceptions/invalid-gender';
+import { InvalidHealthProblemDegree } from '@core/exceptions/invalid-health-problem-degree.exception';
 
 describe('Test for Client entity', () => {
   let client;
@@ -14,6 +15,22 @@ describe('Test for Client entity', () => {
 
   it('should be able to calculate the right score', () => {
     expect(client.getScore()).toBeCloseTo(54.98);
+  });
+
+  it('should throw an error when setting a health problem with a degree greater than 10', () => {
+    const healthProblems = [{ name: 'migraine', degree: 11 }];
+
+    expect(() => {
+      client.setHealthProblems(healthProblems);
+    }).toThrowError(InvalidHealthProblemDegree);
+  });
+
+  it('should throw an error when setting a health problem with a degree below 1', () => {
+    const healthProblems = [{ name: 'migraine', degree: 0 }];
+
+    expect(() => {
+      client.setHealthProblems(healthProblems);
+    }).toThrowError(InvalidHealthProblemDegree);
   });
 
   it('should be able to update the score', () => {
