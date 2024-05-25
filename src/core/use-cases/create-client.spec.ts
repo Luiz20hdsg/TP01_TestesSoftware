@@ -22,7 +22,6 @@ describe('Test for CreateClient use case', () => {
     expect(clientFound).toBeTruthy();
   });
 
-  //new
   it('should handle errors when saving a new Client on the database', async () => {
     const newClient = makeClient();
 
@@ -31,19 +30,6 @@ describe('Test for CreateClient use case', () => {
 
     await expect(createClient.execute(newClient)).rejects.toThrowError('Database error');
   });
-
-  // it('should create a client with default values', async () => {
-  //   const newClient = makeClient();
-
-  //   await createClient.execute(newClient);
-  
-  //   const clientFound = await clientRepository.findAll();
-  
-  //   expect(clientFound[0].getName()).toEqual('John Nhoj');
-  //   expect(clientFound[0].getBirthDate()).toEqual(new Date('1990-01-01'));
-  //   expect(clientFound[0].getGender()).toEqual('M');
-  //   expect(clientFound[0].getHealthProblems()).toEqual([]);
-  // });
 
   it('should create a client with with info of clientes', async () => {
     const defaultClientData = {
@@ -57,14 +43,7 @@ describe('Test for CreateClient use case', () => {
 
     const clientFound = await clientRepository.findAll();
 
-    // Verificando se o cliente foi salvo corretamente no repositório
     expect(clientFound.length).toEqual(1);
-
-    // Verificando se os dados do cliente correspondem exatamente aos fornecidos
-    //expect(clientFound[0].getName()).toEqual(defaultClientData.name);
-    //expect(clientFound[0].getBirthDate()).toEqual(new Date(defaultClientData.birthDate));
-    //expect(clientFound[0].getGender()).toEqual(defaultClientData.gender);
-    //expect(clientFound[0].getHealthProblems()).toEqual(defaultClientData.healthProblems);
   });
 
   it('should handle errors when saving a new Client with info on the database', async () => {
@@ -93,14 +72,10 @@ describe('Test for CreateClient use case', () => {
 
     await createClient.execute(newClient);
 
-    //await createClient.execute(newClientData);
-
     const clientFound = await clientRepository.findAll();
 
-    // Verificando se o cliente foi salvo corretamente no repositório
     expect(clientFound.length).toEqual(1);
 
-    // Verificando se os dados do cliente correspondem exatamente aos fornecidos
     expect(newClient.getName()).toEqual(newClientData.name);
     expect(newClient.getBirthDate()).toEqual(new Date(newClientData.birthDate));
     expect(newClient.getGender()).toEqual(newClientData.gender);
