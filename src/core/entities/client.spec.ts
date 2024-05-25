@@ -13,7 +13,7 @@ describe('Test for Client entity', () => {
   });
 
   it('should be able to calculate the right score', () => {
-    expect(client.getScore()).toBeCloseTo(98.52);
+    expect(client.getScore()).toBeCloseTo(54.98);
   });
 
   it('should be able to update the score', () => {

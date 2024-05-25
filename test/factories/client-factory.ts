@@ -11,7 +11,7 @@ export function makeClient(override: Override = {}): Client {
     gender: 'M',
     healthProblems: [
         { name: 'diabetes', degree: 2 },
-        { name: 'asthma', degree: 5 },
+        { name: 'asthma', degree: 1 },
     ],
     createdAt: new Date('2021-3-4'),
     updatedAt: new Date('2021-3-4'),
