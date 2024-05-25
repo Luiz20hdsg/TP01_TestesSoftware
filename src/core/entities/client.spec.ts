@@ -75,10 +75,7 @@ describe('Test for Client entity', () => {
       healthProblems: [{ name: 'hypertension', degree: 4 }],
     });
     client.updatePropertiesFrom(newClient);
-    expect(client.getName()).toEqual(newClient.getName());
-    expect(client.getBirthDate()).toEqual(newClient.getBirthDate());
-    expect(client.getGender()).toEqual(newClient.getGender());
-    expect(client.getHealthProblems()).toEqual(newClient.getHealthProblems());
+    expect(client).toMatchObject(newClient);
   });
 
   it('should throw an error when setting an invalid gender', () => {
