@@ -22,7 +22,6 @@ jobs:
           fail_ci_if_error: true
           files: ./coverage1.xml,./coverage2.xml 
           token: ${{ secrets.463a3a6e-4a62-4cf6-abd8-dd97da18ce65 }}  
-          files: ./coverage/lcov.info  
           flags: unittests
           name: olisaude-backend-coverage
           verbose: true
