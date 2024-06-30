@@ -14,6 +14,7 @@ const config: Config.InitialOptions = {
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/',
   }),
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
 };
 
 export default config;
