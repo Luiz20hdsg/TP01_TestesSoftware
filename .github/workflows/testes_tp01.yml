@@ -21,7 +21,7 @@ jobs:
         with:
           fail_ci_if_error: true
           files: ./coverage/lcov.info
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.TP01_TESTESSOFTWARE }}
           flags: unittests
           name: olisaude-backend-coverage
           verbose: true
