@@ -1,17 +1,15 @@
 services:
     dev-db:
-        image: postgres:16
+        image: mongo:7.0
         ports:
-            - 5432:5432
+            - 27017:27017
         environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: health
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
     test-db:
-        image: postgres:16
+        image: mongo:7.0
         ports:
-            - 5433:5432
+            - 27018:27017
         environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: health
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
