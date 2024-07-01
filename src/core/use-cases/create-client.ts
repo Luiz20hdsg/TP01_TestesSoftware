@@ -3,7 +3,7 @@ import { ClientRepository } from '../repositories/client-repository';
 import { Client } from '../entities/client';
 import { HealthProblem } from '../entities/health-problem';
 
-interface CreateClientRequest {
+export interface CreateClientRequest {
   name: string;
   birthDate: string;
   gender: string;
