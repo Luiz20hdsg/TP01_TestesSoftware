@@ -14,7 +14,7 @@ interface CreateClientRequest {
 export class CreateClient {
   constructor(private readonly clientRepository: ClientRepository) {}
 
-  async execute(request: CreateClientRequest): Promise<void> {
+  async execute(request: CreateClientRequest): Promise<string> {
     const {
       name,
       birthDate: birthDateString,
@@ -25,6 +25,6 @@ export class CreateClient {
 
     const client = new Client({ name, birthDate, gender, healthProblems });
 
-    await this.clientRepository.save(client);
+    return await this.clientRepository.save(client);
   }
 }

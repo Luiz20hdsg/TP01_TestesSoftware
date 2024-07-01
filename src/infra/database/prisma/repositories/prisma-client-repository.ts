@@ -32,10 +32,10 @@ export class PrismaClientRepository implements ClientRepository {
     return PrismaClientMapper.toDomain(client);
   }
 
-  async save(client: Client): Promise<void> {
+  async save(client: Client): Promise<string> {
     const rawClient = PrismaClientMapper.toPrisma(client);
 
-    await this.prismaService.client.create({ data: rawClient });
+    return (await this.prismaService.client.create({ data: rawClient })).id;
   }
 
   async update(id: string, clientUpdates: Client): Promise<void> {
