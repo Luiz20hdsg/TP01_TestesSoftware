@@ -27,6 +27,8 @@ export class InMemoryClientRepository implements ClientRepository {
 
   async save(client: Client) {
     this.clients.push(client);
+
+    return client.getId();
   }
 
   async update(id: string, clientUpdates: Client) {
